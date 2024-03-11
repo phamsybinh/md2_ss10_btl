@@ -41,13 +41,17 @@ public class Category implements IEntity {
 
     private boolean checkCurrentId(int id) {
         for (Category category : CategoryService.getInstance().getListCategory()) {
-            return category.getId() == id;
+            if (category.getId() == id) {
+                return true;
+            }
         }
         return false;
     }
     private boolean checkCurrentName(String name){
         for (Category category : CategoryService.getInstance().getListCategory()) {
-            return category.getName().equalsIgnoreCase(name);
+            if (category.getName().equalsIgnoreCase(name)){
+                return true;
+            }
         }
         return false;
     }
@@ -72,7 +76,7 @@ public class Category implements IEntity {
         do {
             System.out.println("Nhap vao ten the loai: ");
             name = scanner.nextLine();
-            if ( (name.length() >= 6) && checkCurrentName(name) && (name.length() <=30)){
+            if ( (name.length() >= 6) && !checkCurrentName(name) && (name.length() <=30)){
                 validInput = true;
             } else {
                 System.out.println("Ten the loai khong hop le, vui long nhap lai.");

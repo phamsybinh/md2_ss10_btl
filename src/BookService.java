@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class BookService {
+public class BookService  {
     private static BookService instance ;
     private static ArrayList<Book> listBook;
     private BookService(){
@@ -86,13 +86,14 @@ public class BookService {
                     System.out.println("Tim kiem sach");
                     System.out.println("Nhap vao ten sach ban muon tim kiem");
                     String nameForSearch = scanner.nextLine();
-                    Book book2 = getBookByName(listBook,nameForSearch);
-                    if (book2 == null){
-                        System.out.println("Khong tim thay sach ma ban can");
-                    } else {
-                        System.out.println("Danh sach tim kiem");
-                        getBookByName(listBook,nameForSearch);
-                    }
+                    getBookByName(listBook,nameForSearch);
+//                    Book book2 = getBookByName(listBook,nameForSearch);
+//                    if (book2 == null){
+//                        System.out.println("Khong tim thay sach ma ban can");
+//                    } else {
+//                        System.out.println("Danh sach tim kiem");
+//                        getBookByName(listBook,nameForSearch);
+//                    }
                     break;
                 case 5:
                     System.out.println("Hiển thị danh sách sách theo nhóm thể loại");
@@ -114,13 +115,17 @@ public class BookService {
         } while (true);
     }
 
-    private static Book getBookByName(List<Book> listBook, String prompt){
+    private static void getBookByName(List<Book> listBook, String prompt){
+        boolean checkInput = false;
         for (Book book : listBook){
             if (book.getTitle().toLowerCase().contains(prompt.toLowerCase())||book.getAuthor().toLowerCase().contains(prompt.toLowerCase())||book.getPublisher().toLowerCase().contains(prompt.toLowerCase())){
                 System.out.println(book.getTitle());
+                checkInput = true;
             }
         }
-        return null;
+        if (!checkInput){
+            System.out.println("Khong tim thay sach ma ban can");
+        }
     }
     private static Book getBookById(List<Book> listBook, String id) {
         for (Book book : listBook) {

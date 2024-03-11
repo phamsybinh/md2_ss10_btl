@@ -32,20 +32,21 @@ public class CategoryService {
             switch (choice) {
                 case 1:
                     //test code - remove later
-                    addDefaultCategoryForTest();
+//                    addDefaultCategoryForTest();
 
-//                    System.out.println("Them moi the loai");
-//                    System.out.println("Ban muon them bao nhieu the loai");
-//                    int n = Integer.parseInt(scanner.nextLine());
-//                    for (int i = 0; i < n; i++) {
-//                        System.out.println("The loại " + (i + 1));
-//                        Category category1 = new Category();
-//                        category1.input();
-//                        listCategory.add(category1);
-//                    }
+                    System.out.println("Them moi the loai");
+                    System.out.println("Ban muon them bao nhieu the loai");
+                    int n = Integer.parseInt(scanner.nextLine());
+                    for (int i = 0; i < n; i++) {
+                        System.out.println("The loại " + (i + 1));
+                        Category category1 = new Category();
+                        category1.input();
+                        listCategory.add(category1);
+                    }
                     break;
                 case 2:
                     System.out.println("Hiển thị danh sách theo tên A – Z");
+//                    sort();
                     listCategory.sort(Comparator.comparing(Category::getName));
                     for (Category category1 : listCategory) {
                         category1.output();
@@ -116,6 +117,15 @@ public class CategoryService {
 
         } while (true);
 
+    }
+    public static void sort(){
+        listCategory.sort(new Comparator<Category>() {
+            @Override
+            public int compare(Category category, Category t1) {
+                return t1.getName().compareTo(category.getName());
+            }
+        });
+//        Collections.sort(listCategory);
     }
 
     private void addDefaultCategoryForTest() {

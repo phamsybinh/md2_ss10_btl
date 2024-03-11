@@ -113,21 +113,27 @@ public class Book implements IEntity {
 
     private boolean checkCurrentId(String id) {
         for (Book book : BookService.getInstance().getListBook()) {
-            return book.getId().equalsIgnoreCase(id);
+            if (book.getId().equalsIgnoreCase(id)) {
+                return true;
+            }
         }
         return false;
     }
 
     private boolean checkCurrentTitle(String title) {
         for (Book book : BookService.getInstance().getListBook()) {
-            return book.getTitle().equalsIgnoreCase(title);
+            if (book.getTitle().equalsIgnoreCase(title)){
+            return true;
+            }
         }
         return false;
     }
 
     private boolean checkCurrentCategoryId(int id) {
         for (Category category : CategoryService.getInstance().getListCategory()) {
-            return category.getId() == id;
+            if (category.getId() == id) {
+                return true;
+            }
         }
         return false;
     }
@@ -261,7 +267,7 @@ public class Book implements IEntity {
 
     @Override
     public void output() {
-        System.out.printf("id= %s\ttitle= %s\tauthor= %s\tpublisher= %s\tyear= %d\tdescription= %s\tcategoryId= %d\n", id, title, author, publisher, year, description, categoryId);
+        System.out.printf("id= %s\ttitle= %s\tauthor= %s\tpublisher= %s\tyear= %d\tdescription= %s\tcategoryName= %d\n", id, title, author, publisher, year, description, categoryId);
     }
 
     @Override
